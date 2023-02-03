@@ -14,7 +14,7 @@ using namespace std;
 
 void fillingMatrCoef(double**& MATR_coef, int RH, int RW, double sigma);
 
-// Линейная фильтрация методом Гаусса с использованием omp parallel for
+// Р›РёРЅРµР№РЅР°СЏ С„РёР»СЊС‚СЂР°С†РёСЏ РјРµС‚РѕРґРѕРј Р“Р°СѓСЃСЃР° СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј omp parallel for
 double LinearGaussFilter(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int imWidth, int  imHeight, int RH, int RW)
 {
 	double time_start = omp_get_wtime();
@@ -70,7 +70,7 @@ double LinearGaussFilter(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int imWidth,
 	return (omp_get_wtime() - time_start) * 1000;
 }
 
-// Линейная фильтрация методом Гаусса с использованием tbb::parallel_for
+// Р›РёРЅРµР№РЅР°СЏ С„РёР»СЊС‚СЂР°С†РёСЏ РјРµС‚РѕРґРѕРј Р“Р°СѓСЃСЃР° СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј tbb::parallel_for
 double LinearGaussFilterTBB(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int imWidth, int  imHeight, int RH, int RW)
 {
 	double time_start = omp_get_wtime();
@@ -127,7 +127,7 @@ double LinearGaussFilterTBB(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int imWid
 	return (omp_get_wtime() - time_start) * 1000;
 }
 
-// Функция заполнения коэффициентов
+// Р¤СѓРЅРєС†РёСЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ РєРѕСЌС„С„РёС†РёРµРЅС‚РѕРІ
 void fillingMatrCoef(double**& MATR_coef, int RH, int RW, double sigma)
 {
 	double SUM = 0;
@@ -151,7 +151,7 @@ void fillingMatrCoef(double**& MATR_coef, int RH, int RW, double sigma)
 	}
 }
 
-// Линейная фильтрация Среднеарифметическим фильтром с использованием omp parallel for
+// Р›РёРЅРµР№РЅР°СЏ С„РёР»СЊС‚СЂР°С†РёСЏ РЎСЂРµРґРЅРµР°СЂРёС„РјРµС‚РёС‡РµСЃРєРёРј С„РёР»СЊС‚СЂРѕРј СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј omp parallel for
 double LinearArithmeticMeanFilter(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int imWidth, int  imHeight, int RH, int RW)
 {
 	double time_start = omp_get_wtime();
@@ -191,7 +191,7 @@ double LinearArithmeticMeanFilter(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int
 	return (omp_get_wtime() - time_start) * 1000;
 }
 
-// Линейная фильтрация Среднеарифметическим фильтром с использованием tbb::parallel_for
+// Р›РёРЅРµР№РЅР°СЏ С„РёР»СЊС‚СЂР°С†РёСЏ РЎСЂРµРґРЅРµР°СЂРёС„РјРµС‚РёС‡РµСЃРєРёРј С„РёР»СЊС‚СЂРѕРј СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј tbb::parallel_for
 double LinearArithmeticMeanFilterTBB(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int imWidth, int  imHeight, int RH, int RW)
 {
 	double time_start = omp_get_wtime();
@@ -232,7 +232,7 @@ double LinearArithmeticMeanFilterTBB(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, 
 	return (omp_get_wtime() - time_start) * 1000;
 }
 
-// Функция рассчёта текстурных признаков с использованием omp parallel for 
+// Р¤СѓРЅРєС†РёСЏ СЂР°СЃСЃС‡С‘С‚Р° С‚РµРєСЃС‚СѓСЂРЅС‹С… РїСЂРёР·РЅР°РєРѕРІ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј omp parallel for 
 double texturefeatures(RGBTRIPLE**& rgb_in, int &imWidth, int  &imHeight, int &RH, int &RW)
 {
 	double t_start = omp_get_wtime();
@@ -455,7 +455,7 @@ double texturefeatures(RGBTRIPLE**& rgb_in, int &imWidth, int  &imHeight, int &R
 	return (t_end - t_start) * 1000;
 }
 
-// Функция рассчёта текстурных признаков с использованием tbb::parallel_for
+// Р¤СѓРЅРєС†РёСЏ СЂР°СЃСЃС‡С‘С‚Р° С‚РµРєСЃС‚СѓСЂРЅС‹С… РїСЂРёР·РЅР°РєРѕРІ СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј tbb::parallel_for
 double texturefeaturesTBB(RGBTRIPLE**& rgb_in, int &imWidth, int &imHeight, int &RH, int &RW)
 {
 	double t_start = omp_get_wtime();
@@ -464,7 +464,7 @@ double texturefeaturesTBB(RGBTRIPLE**& rgb_in, int &imWidth, int &imHeight, int 
 	RGBTRIPLE** rgb_out_m2 = new RGBTRIPLE * [imHeight], ** rgb_out_r = new RGBTRIPLE * [imHeight],
 		** rgb_out_u = new RGBTRIPLE * [imHeight], ** rgb_out_e = new RGBTRIPLE * [imHeight];
 
-	// выделение памяти под новое (выходное) изображение (rgb_out)
+	// РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РЅРѕРІРѕРµ (РІС‹С…РѕРґРЅРѕРµ) РёР·РѕР±СЂР°Р¶РµРЅРёРµ (rgb_out)
 	rgb_out_m2[0] = new RGBTRIPLE[imWidth * imHeight];
 	rgb_out_u[0] = new RGBTRIPLE[imWidth * imHeight];
 	rgb_out_r[0] = new RGBTRIPLE[imWidth * imHeight];
@@ -683,7 +683,7 @@ double texturefeaturesTBB(RGBTRIPLE**& rgb_in, int &imWidth, int &imHeight, int 
 	return (t_end - t_start) * 1000;
 }
 
-// Быстрая линейная фильтрация Среднеарифметическим фильтром с использованием omp parallel for
+// Р‘С‹СЃС‚СЂР°СЏ Р»РёРЅРµР№РЅР°СЏ С„РёР»СЊС‚СЂР°С†РёСЏ РЎСЂРµРґРЅРµР°СЂРёС„РјРµС‚РёС‡РµСЃРєРёРј С„РёР»СЊС‚СЂРѕРј СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј omp parallel for
 double QuickLinearArithmeticMeanFilter(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int imWidth, int  imHeight, int RH, int RW)
 {
 	double time_start = omp_get_wtime();
@@ -813,7 +813,7 @@ void LinearGaussFilterSection(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int stY
 	}
 }
 
-// Линейная фильтрация методом Гаусса с использованием omp parallel sections
+// Р›РёРЅРµР№РЅР°СЏ С„РёР»СЊС‚СЂР°С†РёСЏ РјРµС‚РѕРґРѕРј Р“Р°СѓСЃСЃР° СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј omp parallel sections
 double LinearGaussFilterSections(RGBTRIPLE**& rgb_in, RGBTRIPLE**& rgb_out, int imWidth, int  imHeight, int RH, int RW)
 {
 	double time_start = omp_get_wtime();
@@ -899,7 +899,7 @@ void LinearArithmeticMeanFilterSection(RGBTRIPLE** rgb_in, RGBTRIPLE** rgb_out, 
 	}
 }
 
-// Линейная фильтрация Среднеарифметическим фильтром с использованием omp parallel sections
+// Р›РёРЅРµР№РЅР°СЏ С„РёР»СЊС‚СЂР°С†РёСЏ РЎСЂРµРґРЅРµР°СЂРёС„РјРµС‚РёС‡РµСЃРєРёРј С„РёР»СЊС‚СЂРѕРј СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј omp parallel sections
 double LinearArithmeticMeanFilterSections(RGBTRIPLE** rgb_in, RGBTRIPLE** rgb_out, int imWidth, int  imHeight, int RH, int RW)
 {
 	double time_start = omp_get_wtime();
@@ -1024,7 +1024,7 @@ void QuickLinearArithmeticMeanFilterSection(RGBTRIPLE** rgb_in, RGBTRIPLE** rgb_
 
 }
 
-// Быстрая линейная фильтрация Среднеарифметическим фильтром с использованием omp parallel sections
+// Р‘С‹СЃС‚СЂР°СЏ Р»РёРЅРµР№РЅР°СЏ С„РёР»СЊС‚СЂР°С†РёСЏ РЎСЂРµРґРЅРµР°СЂРёС„РјРµС‚РёС‡РµСЃРєРёРј С„РёР»СЊС‚СЂРѕРј СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј omp parallel sections
 double QuickLinearArithmeticMeanFilterSections(RGBTRIPLE** rgb_in, RGBTRIPLE** rgb_out, int imWidth, int  imHeight, int RH, int RW)
 {
 	double time_start = omp_get_wtime();
@@ -1063,19 +1063,17 @@ double QuickLinearArithmeticMeanFilterSections(RGBTRIPLE** rgb_in, RGBTRIPLE** r
 	return (omp_get_wtime() - time_start) * 1000;
 }
 
-// Функция рассчёта доверительного интервала
+// Р¤СѓРЅРєС†РёСЏ СЂР°СЃСЃС‡С‘С‚Р° РґРѕРІРµСЂРёС‚РµР»СЊРЅРѕРіРѕ РёРЅС‚РµСЂРІР°Р»Р°
 double AvgTrustedIntervalAVG(double*& times, int cnt)
 {
-	// вычисление среднеарифметического значения
+	// РІС‹С‡РёСЃР»РµРЅРёРµ СЃСЂРµРґРЅРµР°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	double avg = 0;
+	// РїРѕРґСЃС‡РµС‚ РІ РїРµСЂРµРјРµРЅРЅСѓСЋ СЃСѓРјРјС‹
 	for (int i = 0; i < cnt; i++)
-	{
-		// подсчет в переменную суммы
 		avg += times[i];
-	}
-	// деление на количество
+	// РґРµР»РµРЅРёРµ РЅР° РєРѕР»РёС‡РµСЃС‚РІРѕ
 	avg /= cnt;
-	// подсчет стандартного отклонения
+	// РїРѕРґСЃС‡РµС‚ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РѕС‚РєР»РѕРЅРµРЅРёСЏ
 	double sd = 0, newAVg = 0;
 	int newCnt = 0;
 	for (int i = 0; i < cnt; i++)
@@ -1084,9 +1082,8 @@ double AvgTrustedIntervalAVG(double*& times, int cnt)
 	}
 	sd /= (cnt - 1.0);
 	sd = sqrt(sd);
-	// вычисление нового среднего значения в доверительном интервале
-	// с использованием среднеарифметического значения
-	//
+	// РІС‹С‡РёСЃР»РµРЅРёРµ РЅРѕРІРѕРіРѕ СЃСЂРµРґРЅРµРіРѕ Р·РЅР°С‡РµРЅРёСЏ РІ РґРѕРІРµСЂРёС‚РµР»СЊРЅРѕРј РёРЅС‚РµСЂРІР°Р»Рµ
+	// СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј СЃСЂРµРґРЅРµР°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	for (int i = 0; i < cnt; i++)
 	{
 		if (avg - sd <= times[i] && times[i] <= avg + sd)
@@ -1108,7 +1105,7 @@ int main()
 	for (int j = 0; j < 10; j++)
 		times[j] = new double[ExpCount];
 
-	// Для 4 изображений
+	// Р”Р»СЏ 4 РёР·РѕР±СЂР°Р¶РµРЅРёР№
 	for (int dataset = 0; dataset <= 4; dataset++)
 	{
 		stringstream ss1;
@@ -1119,17 +1116,17 @@ int main()
 		BITMAPINFOHEADER bmiHeader;
 		int imWidth = 0, imHeight = 0;
 
-		// чтение BMP файла с прописанным путем
+		// С‡С‚РµРЅРёРµ BMP С„Р°Р№Р»Р° СЃ РїСЂРѕРїРёСЃР°РЅРЅС‹Рј РїСѓС‚РµРј
 		BMPRead(rgb_in, header, bmiHeader, "c:\\temp\\sample" + ss1.str() + ".bmp");
 
-		// считываем из заголовочной области параметры изображения
+		// СЃС‡РёС‚С‹РІР°РµРј РёР· Р·Р°РіРѕР»РѕРІРѕС‡РЅРѕР№ РѕР±Р»Р°СЃС‚Рё РїР°СЂР°РјРµС‚СЂС‹ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 		imWidth = bmiHeader.biWidth;
 		imHeight = bmiHeader.biHeight;
 
-		// Вывод на экран параметров изображение (ширина х вымота)
+		// Р’С‹РІРѕРґ РЅР° СЌРєСЂР°РЅ РїР°СЂР°РјРµС‚СЂРѕРІ РёР·РѕР±СЂР°Р¶РµРЅРёРµ (С€РёСЂРёРЅР° С… РІС‹cРѕС‚Р°)
 		std::cout << "\nImage params:" << imWidth << "x" << imHeight << endl;
 
-		// выделение памяти под новое (выходное) изображение (rgb_out)
+		// РІС‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё РїРѕРґ РЅРѕРІРѕРµ (РІС‹С…РѕРґРЅРѕРµ) РёР·РѕР±СЂР°Р¶РµРЅРёРµ (rgb_out)
 		rgb_out = new RGBTRIPLE * [imHeight];
 		rgb_out[0] = new RGBTRIPLE[imWidth * imHeight];
 
@@ -1142,11 +1139,11 @@ int main()
 		{
 			omp_set_num_threads(threads);
 
-			// Установка количества потоков
+			// Г“Г±ГІГ Г­Г®ГўГЄГ  ГЄГ®Г«ГЁГ·ГҐГ±ГІГўГ  ГЇГ®ГІГ®ГЄГ®Гў
 			tbb::global_control
 				global_limit(tbb::global_control::max_allowed_parallelism, threads);
 
-			std::cout << "\nТекущее число потоков " << omp_get_max_threads() << endl;
+			std::cout << "\nГ’ГҐГЄГіГ№ГҐГҐ Г·ГЁГ±Г«Г® ГЇГ®ГІГ®ГЄГ®Гў " << omp_get_max_threads() << endl;
 
 			stringstream ss2;
 			ss2 << omp_get_max_threads();
@@ -1186,13 +1183,13 @@ int main()
 					times[9][i] = texturefeaturesTBB(rgb_in, imWidth, imHeight, RH, RW);
 				}
 
-				std::cout << "\nДля RH = RW = " << RH << " время (TBB) Гаусса составило " << AvgTrustedIntervalAVG(times[6], ExpCount) << endl;
+				std::cout << "\nР”Р»СЏ RH = RW = " << RH << " РІСЂРµРјСЏ (TBB) Р“Р°СѓСЃСЃР° СЃРѕСЃС‚Р°РІРёР»Рѕ " << AvgTrustedIntervalAVG(times[6], ExpCount) << endl;
 
-				std::cout << "\nДля RH = RW = " << RH << " время (TBB) Среднеарифметического фильтра составило " << AvgTrustedIntervalAVG(times[7], ExpCount) << endl;
+				std::cout << "\nР”Р»СЏ RH = RW = " << RH << " РІСЂРµРјСЏ (TBB) РЎСЂРµРґРЅРµР°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРіРѕ С„РёР»СЊС‚СЂР° СЃРѕСЃС‚Р°РІРёР»Рѕ " << AvgTrustedIntervalAVG(times[7], ExpCount) << endl;
 
-				std::cout << "\nДля RH = RW = " << RH << " время (Parallel) текстурных признаков составило " << AvgTrustedIntervalAVG(times[8], ExpCount) << endl;
+				std::cout << "\nР”Р»СЏ RH = RW = " << RH << " РІСЂРµРјСЏ (Parallel) С‚РµРєСЃС‚СѓСЂРЅС‹С… РїСЂРёР·РЅР°РєРѕРІ СЃРѕСЃС‚Р°РІРёР»Рѕ " << AvgTrustedIntervalAVG(times[8], ExpCount) << endl;
 
-				std::cout << "\nДля RH = RW = " << RH << " время (TBB) текстурных признаков составило " << AvgTrustedIntervalAVG(times[9], ExpCount) << endl;
+				std::cout << "\nР”Р»СЏ RH = RW = " << RH << " РІСЂРµРјСЏ (TBB) С‚РµРєСЃС‚СѓСЂРЅС‹С… РїСЂРёР·РЅР°РєРѕРІ СЃРѕСЃС‚Р°РІРёР»Рѕ " << AvgTrustedIntervalAVG(times[9], ExpCount) << endl;
 			}
 		}
 	}
